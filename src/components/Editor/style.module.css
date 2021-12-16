@@ -3,7 +3,7 @@
 
 .editorWrapper {
     font-size: 22px;
-    flex-grow: 1;
+    overflow: hidden;
 }
 
 .editor {
