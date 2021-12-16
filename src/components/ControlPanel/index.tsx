@@ -7,8 +7,16 @@ const ControlPanel = () => {
 
     return <div className={classNames(styles.panelWrapper, {[styles.panelShow]: isShow})}>
         <div className={styles.actionsBar}>
-            <button>Run</button>
-            <button>Input parameters</button>
+            <button
+                className={classNames(styles.primaryButton)}
+            >
+                Run
+            </button>
+            <button
+                className={classNames(styles.primaryButton)}
+            >
+                Input parameters
+            </button>
             <button
                 onClick={() => setIsShow(!isShow)}
                 className={classNames(styles.viewsButton, {[styles.viewsButtonShow]: isShow})}

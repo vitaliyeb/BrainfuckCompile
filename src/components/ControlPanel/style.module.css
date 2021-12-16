@@ -17,6 +17,7 @@
 .actionsBar {
     display: flex;
     align-items: center;
+    column-gap: 15px;
  }
 
 .viewsButton {
@@ -34,6 +35,16 @@
 
 .viewsButtonShow {
     transform: rotate(-45deg) translateY(10%) scale(-1);
+}
+
+.primaryButton {
+    font-size: 13px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 2px;
+    padding: 2px 5px;
+    border: 1px solid #fff;
+
 }
 
 .content {
