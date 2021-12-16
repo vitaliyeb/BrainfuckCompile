@@ -1,8 +1,45 @@
 .panelWrapper {
-    height: 40vh;
     max-height: 310px;
-    background-color: red;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 15px 30px;
+    background-color: #25252a;
     width: 100vw;
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    transition: 1s;
 }
 
+.panelShow {
+    height: 40vh;
+}
 
+.actionsBar {
+    display: flex;
+    align-items: center;
+ }
+
+.viewsButton {
+    --size: 11px;
+    margin-left: auto;
+    margin-right: 2px;
+    --borderStyle: 3px solid #b0c1e7;
+    min-width: var(--size);
+    min-height: var(--size);
+    transform: rotate(-45deg) translateY(10%) scale(1);
+    border-top: var(--borderStyle);
+    padding: 0;
+    border-right: var(--borderStyle);
+}
+
+.viewsButtonShow {
+    transform: rotate(-45deg) translateY(10%) scale(-1);
+}
+
+.content {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #333a46;
+    margin-top: 10px;
+}

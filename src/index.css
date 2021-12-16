@@ -18,3 +18,10 @@ code {
   height: 100vh;
   flex-direction: column;
 }
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
