@@ -3,4 +3,9 @@
 
 .editorWrapper {
     font-size: 22px;
+    flex-grow: 1;
+}
+
+.editor {
+    height: 100%;
 }
