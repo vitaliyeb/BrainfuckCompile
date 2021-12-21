@@ -2,52 +2,69 @@
 export default class Compile {
     memorySet: Int8Array;
     code: string;
-    index: number;
+    memoryIndex: number;
+    codeIndex: number;
 
 
     constructor(code: string) {
         this.memorySet = new Int8Array(30000);
         this.code = code.replace(/\s/g, '');
-        this.index = 0;
+        this.memoryIndex = 0;
+        this.codeIndex = 0;
     }
 
     run = () => {
-        let i = 0;
-        while (i < this.code.length) {
-            this.callOperator(this.code[i++])
+        while (this.codeIndex < this.code.length) {
+            this.callOperator(this.code[this.codeIndex]);
+            this.codeIndex++;
         }
     }
 
     callOperator = (op: string) => {
         console.log('op', op);
         const {
-            index,
+            memoryIndex,
             memorySet
         } = this;
 
         switch (op) {
             case '>':
-                this.index++;
+                this.memoryIndex++;
                 break;
             case '<':
-                this.index--;
+                this.memoryIndex--;
                 break;
             case '+':
-                memorySet[index]++;
+                memorySet[memoryIndex]++;
                 break;
             case '-':
-                memorySet[index]--;
+                memorySet[memoryIndex]--;
                 break;
             case '.':
-                console.log(memorySet[index]);
+                console.log(memorySet[memoryIndex]);
                 break;
             case ',':
                 return ''
             case '[':
-                return ''
+                this.nestingGroup();
+                break;
             case ']':
                 return ''
         }
     }
 
+    nestingGroup = () => {
+        const {
+            code,
+            memoryIndex,
+            codeIndex,
+            memorySet
+        } = this;
+        const lvl = 1;
+        if(memorySet[memoryIndex] === 0){
+            while(lvl) {
+                
+            }
+        }
+    }
 }
