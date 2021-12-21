@@ -12,7 +12,7 @@ function App() {
               setValue={setValue}
           />
           <ControlPanel
-
+              code={value}
           />
       </div>
     );

@@ -1,14 +1,24 @@
 import styles from './style.module.css';
-import {useState} from "react";
+import React, {useState} from "react";
 import classNames from "classnames";
+import Compile from './../../utils/Compile';
 
-const ControlPanel = () => {
+interface IProps {
+    code: string
+}
+
+const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
+
+    const runCode = () => {
+        new Compile(code).run();
+    }
 
     return <div className={classNames(styles.panelWrapper, {[styles.panelShow]: isShow})}>
         <div className={styles.actionsBar}>
             <button
                 className={classNames(styles.primaryButton)}
+                onClick={runCode}
             >
                 Run
             </button>
