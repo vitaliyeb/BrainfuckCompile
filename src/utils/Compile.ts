@@ -5,7 +5,6 @@ export default class Compile {
     memoryIndex: number;
     codeIndex: number;
 
-
     constructor(code: string) {
         this.memorySet = new Int8Array(30000);
         this.code = code.replace(/\s/g, '');
