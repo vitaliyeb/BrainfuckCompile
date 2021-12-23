@@ -1,7 +1,7 @@
 import styles from './style.module.css';
 import React, {useState} from "react";
 import classNames from "classnames";
-import Compile from './../../utils/Compile';
+import interpret from "../../utils/interpret";
 
 interface IProps {
     code: string
@@ -11,7 +11,7 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
 
     const runCode = () => {
-        new Compile(code).run();
+        interpret(code);
     }
 
     return <div className={classNames(styles.panelWrapper, {[styles.panelShow]: isShow})}>
