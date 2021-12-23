@@ -1,5 +1,5 @@
 import styles from './style.module.css';
-import React, {useState} from "react";
+import React, {useMemo, useRef, useState} from "react";
 import classNames from "classnames";
 import interpret from "../../utils/interpret";
 
@@ -9,9 +9,15 @@ interface IProps {
 
 const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
+    const lastCodeInter = useRef('');
+    const [{ result, error, ms }, setInterData] = useState({result: '', error: null, ms: 0});
+
 
     const runCode = () => {
-        interpret(code);
+        if(lastCodeInter.current !== code) {
+            setInterData(interpret(code));
+            lastCodeInter.current = code;
+        }
     }
 
     return <div className={classNames(styles.panelWrapper, {[styles.panelShow]: isShow})}>
@@ -33,7 +39,8 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
             />
         </div>
         <div className={classNames(styles.content)}>
-
+            { !error && <p className={styles.result}>{ result }</p> }
+            { error && <p className={styles.result}>{ error }</p> }
         </div>
     </div>
 }

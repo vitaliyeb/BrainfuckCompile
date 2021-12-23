@@ -1,8 +1,13 @@
-export default function (c: string) {
+type Interpret = (str: string) => {result: string; error: null; ms: number};
+
+
+const interpret: Interpret = (c) =>  {
     const memorySet = new Int8Array(30000);
     const code = c.replace(/\s/g, '');
     let pointer = 0;
     let index = 0;
+    let result = '';
+    let error = null;
 
     while (index < code.length) {
         const operator = code[index];
@@ -21,10 +26,10 @@ export default function (c: string) {
                 memorySet[pointer]--;
                 break;
             case '.':
-                console.log(memorySet[pointer]);
+                result+=memorySet[pointer];
                 break;
             case ',':
-                return ''
+                break;
             case '[':
                 if(!memorySet[pointer]){
                     let nesting = 1;
@@ -45,7 +50,14 @@ export default function (c: string) {
                     }
                 }
         }
-
         index++;
     }
-}
+
+    return {
+        result,
+        error,
+        ms: 0
+    };
+};
+
+export default interpret;

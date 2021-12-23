@@ -25,3 +25,7 @@ button {
   cursor: pointer;
   background-color: transparent;
 }
+
+p {
+  margin: 0;
+}
