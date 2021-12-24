@@ -40,8 +40,6 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
         </div>
         <div className={classNames(styles.content)}>
             { !error && <p className={styles.result}>{ result }</p> }
-
-            {result}
             { error && <p className={styles.error}>{ error }</p> }
         </div>
     </div>
