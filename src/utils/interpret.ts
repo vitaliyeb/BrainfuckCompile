@@ -1,9 +1,10 @@
 import {log} from "util";
 
-export type Interpret = (str: string) => {result: string; error: null | string; ms: number};
+export type Interpret = (str: string, p: string) => {result: string; error: null | string; ms: number};
 
 
-const interpret: Interpret = (c) =>  {
+const interpret: Interpret = (c, p) =>  {
+    const params = p.split(',').map(i => (parseInt(i) || 0));
     const memorySet = new Int8Array(30000);
     const code = c.replace(/\s/g, '');
     let pointer = 0;
@@ -33,6 +34,10 @@ const interpret: Interpret = (c) =>  {
                 result+=memorySet[pointer];
                 break;
             case ',':
+                const n = params.shift();
+                if(typeof n !== "undefined"){
+                    memorySet[pointer] = n;
+                }
                 break;
             case '[':
                 if(!memorySet[pointer]){
