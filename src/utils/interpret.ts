@@ -1,4 +1,4 @@
-type Interpret = (str: string) => {result: string; error: null; ms: number};
+export type Interpret = (str: string) => {result: string; error: null | string; ms: number};
 
 
 const interpret: Interpret = (c) =>  {
@@ -9,10 +9,10 @@ const interpret: Interpret = (c) =>  {
     let result = '';
     let error = null;
 
-    while (index < code.length) {
-        const operator = code[index];
+    mainLoop: while (index < code.length) {
+        const token = code[index];
 
-        switch (operator) {
+        switch (token) {
             case '>':
                 pointer++;
                 break;
@@ -49,6 +49,10 @@ const interpret: Interpret = (c) =>  {
                         if (code[index] === ']') nesting++;
                     }
                 }
+                break;
+            default:
+                error = `Uncaught SyntaxError: Unexpected token '${token}'`;
+
         }
         index++;
     }

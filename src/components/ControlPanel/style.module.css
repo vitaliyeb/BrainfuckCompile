@@ -49,15 +49,21 @@
 
 .content {
     overflow: hidden;
-    width: 100%;
     border-radius: 4px;
     background-color: #333a46;
     padding: 12px;
     margin-top: 10px;
 }
 
-.result {
+.content > p {
     font-size: 1.2rem;
-    color: #fff;
     font-weight: 500;
+}
+
+.result {
+    color: #fff;
+}
+
+.error {
+    color: #d93838;
 }

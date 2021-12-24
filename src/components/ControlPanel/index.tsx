@@ -1,7 +1,7 @@
 import styles from './style.module.css';
 import React, {useMemo, useRef, useState} from "react";
 import classNames from "classnames";
-import interpret from "../../utils/interpret";
+import interpret, { Interpret } from "../../utils/interpret";
 
 interface IProps {
     code: string
@@ -10,7 +10,7 @@ interface IProps {
 const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
     const lastCodeInter = useRef('');
-    const [{ result, error, ms }, setInterData] = useState({result: '', error: null, ms: 0});
+    const [{ result, error, ms }, setInterData] = useState<ReturnType<Interpret>>({result: '', error: null, ms: 0});
 
 
     const runCode = () => {
@@ -40,7 +40,7 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
         </div>
         <div className={classNames(styles.content)}>
             { !error && <p className={styles.result}>{ result }</p> }
-            { error && <p className={styles.result}>{ error }</p> }
+            { error && <p className={styles.error}>{ error }</p> }
         </div>
     </div>
 }
