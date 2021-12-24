@@ -9,6 +9,7 @@ const interpret: Interpret = (c) =>  {
     let result = '';
     let error = null;
 
+
     mainLoop: while (index < code.length) {
         const token = code[index];
 
@@ -37,6 +38,10 @@ const interpret: Interpret = (c) =>  {
                         index++;
                         if (code[index] === '[') nesting++;
                         if (code[index] === ']') nesting--;
+                        if(index > code.length) {
+                            error = `Uncaught SyntaxError: expected closing token ']'`;
+                            break mainLoop;
+                        };
                     }
                 }
                 break;
@@ -47,12 +52,16 @@ const interpret: Interpret = (c) =>  {
                         index--;
                         if (code[index] === '[') nesting--;
                         if (code[index] === ']') nesting++;
+                        if(index < 0) {
+                            error = `Uncaught SyntaxError: expected closing token '['`;
+                            break mainLoop;
+                        };
                     }
                 }
                 break;
             default:
                 error = `Uncaught SyntaxError: Unexpected token '${token}'`;
-
+                break mainLoop;
         }
         index++;
     }
