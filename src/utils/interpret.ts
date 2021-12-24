@@ -1,3 +1,5 @@
+import {log} from "util";
+
 export type Interpret = (str: string) => {result: string; error: null | string; ms: number};
 
 
@@ -8,7 +10,7 @@ const interpret: Interpret = (c) =>  {
     let index = 0;
     let result = '';
     let error = null;
-
+    const cycleСounter: number[] = [];
 
     mainLoop: while (index < code.length) {
         const token = code[index];
@@ -44,8 +46,13 @@ const interpret: Interpret = (c) =>  {
                         };
                     }
                 }
+                cycleСounter.push(0);
                 break;
             case ']':
+                if (++cycleСounter[cycleСounter.length-1] >= 1000) {
+                    error = `InternalError: infinity loop`;
+                    break mainLoop;
+                }
                 if(memorySet[pointer]){
                     let nesting = 1;
                     while(nesting) {
@@ -57,12 +64,15 @@ const interpret: Interpret = (c) =>  {
                             break mainLoop;
                         };
                     }
+                    break;
                 }
+                cycleСounter.pop();
                 break;
             default:
                 error = `Uncaught SyntaxError: Unexpected token '${token}'`;
                 break mainLoop;
         }
+
         index++;
     }
 
