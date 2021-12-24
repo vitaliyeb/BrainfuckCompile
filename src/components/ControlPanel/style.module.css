@@ -5,6 +5,7 @@
     padding: 15px 30px;
     background-color: #25252a;
     width: 100vw;
+    position: relative;
     display: grid;
     grid-template-rows: max-content 1fr;
     transition: 1s;
@@ -47,6 +48,11 @@
 
 }
 
+.primaryButton.active {
+    background-color: white;
+    color: #25252a;
+}
+
 .content {
     overflow-y: auto;
     border-radius: 4px;
@@ -68,4 +74,28 @@
 .error {
     font-size: .87rem;
     color: #d93838;
+}
+
+.inputPanel {
+    position: absolute;
+    z-index: 5;
+    transform: translateY(-100%);
+    border: none;
+    left: 0;
+    background-color: #333a46;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 1rem;
+    overflow: hidden;
+    outline: none;
+    max-height: 0px;
+    padding: 0;
+    color: #dadada;
+    animation-duration: 2s;
+}
+
+.inputPanel.showInputParams {
+    padding: .8rem 1.2rem;
+    max-height: max-content;
 }

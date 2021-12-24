@@ -9,6 +9,8 @@ interface IProps {
 
 const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
+    const [inputParams, setInputParams] = useState('');
+    const [isShowInputParams, setIsShowInputParams] = useState(true);
     const lastCodeInter = useRef('');
     const [{ result, error, ms }, setInterData] = useState<ReturnType<Interpret>>({result: '', error: null, ms: 0});
 
@@ -21,18 +23,26 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
     }
 
     return <div className={classNames(styles.panelWrapper, {[styles.panelShow]: isShow})}>
+        <input
+            placeholder={'10, 22, 13...'}
+            className={classNames(styles.inputPanel, {[styles.showInputParams]: isShowInputParams})}
+            onChange={e => setInputParams(e.target.value)}
+            value={inputParams}
+        />
         <div className={styles.actionsBar}>
             <button
-                className={classNames(styles.primaryButton)}
+                className={styles.primaryButton}
                 onClick={runCode}
             >
                 Run
             </button>
             <button
-                className={classNames(styles.primaryButton)}
+                onClick={() => setIsShowInputParams(!isShowInputParams)}
+                className={classNames(styles.primaryButton, {[styles.active]: isShowInputParams})}
             >
-                Input parameters
+                Input
             </button>
+
             <button
                 onClick={() => setIsShow(!isShow)}
                 className={classNames(styles.viewsButton, {[styles.viewsButtonShow]: isShow})}

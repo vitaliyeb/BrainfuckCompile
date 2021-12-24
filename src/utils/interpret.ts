@@ -29,6 +29,7 @@ const interpret: Interpret = (c) =>  {
                 memorySet[pointer]--;
                 break;
             case '.':
+                // result+=String.fromCharCode(memorySet[pointer]);
                 result+=memorySet[pointer];
                 break;
             case ',':
@@ -75,7 +76,7 @@ const interpret: Interpret = (c) =>  {
 
         index++;
     }
-
+    // console.log(result);
     return {
         result,
         error,
