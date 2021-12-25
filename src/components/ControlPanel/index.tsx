@@ -10,7 +10,7 @@ interface IProps {
 const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
     const [inputParams, setInputParams] = useState('');
-    const [isShowInputParams, setIsShowInputParams] = useState(true);
+    const [isShowInputParams, setIsShowInputParams] = useState(false);
     const [isDec, setIsDec] = useState(false);
     const lastCodeInter = useRef('');
     const lastInputInter = useRef('');
