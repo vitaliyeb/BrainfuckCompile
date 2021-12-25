@@ -11,15 +11,16 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
     const [isShow, setIsShow] = useState(true);
     const [inputParams, setInputParams] = useState('');
     const [isShowInputParams, setIsShowInputParams] = useState(true);
+    const [isDec, setIsDec] = useState(false);
     const lastCodeInter = useRef('');
     const lastInputInter = useRef('');
 
-    const [{ result, error, ms }, setInterData] = useState<ReturnType<Interpret>>({result: '', error: null, ms: 0});
+    const [{ result, error, ms }, setInterData] = useState<ReturnType<Interpret>>({result: [], error: null, ms: 0});
 
 
     const runCode = () => {
         if(lastCodeInter.current !== code || lastInputInter.current !== inputParams) {
-            setInterData(interpret(code, inputParams));
+            setInterData(interpret(code, inputParams, isDec));
             lastCodeInter.current = code;
             lastInputInter.current = inputParams;
         }
@@ -45,6 +46,12 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
             >
                 Input
             </button>
+            <button
+                onClick={() => setIsDec(!isDec)}
+                className={classNames(styles.primaryButton, {[styles.active]: isDec})}
+            >
+                DEC
+            </button>
 
             <button
                 onClick={() => setIsShow(!isShow)}
@@ -52,7 +59,13 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
             />
         </div>
         <div className={classNames(styles.content)}>
-            { !error && <p className={styles.result}>{ result }</p> }
+            { !error && <p className={styles.result}>
+                {
+                    isDec ?
+                        result :
+                        result.map(n => String.fromCharCode(n))
+                }
+            </p> }
             { error && <p className={styles.error}>{ error }</p> }
         </div>
     </div>

@@ -1,15 +1,12 @@
-import {log} from "util";
+export type Interpret = (str: string, p: string, d: boolean) => {result: number[]; error: null | string; ms: number};
 
-export type Interpret = (str: string, p: string) => {result: string; error: null | string; ms: number};
-
-
-const interpret: Interpret = (c, p) =>  {
+const interpret: Interpret = (c, p, isDec) =>  {
     const params = p.split(',').map(i => (parseInt(i) || 0));
     const memorySet = new Int8Array(30000);
     const code = c.replace(/\s/g, '');
     let pointer = 0;
     let index = 0;
-    let result = '';
+    let result: number[] = [];
     let error = null;
     const cycleСounter: number[] = [];
 
@@ -30,8 +27,7 @@ const interpret: Interpret = (c, p) =>  {
                 memorySet[pointer]--;
                 break;
             case '.':
-                // result+=String.fromCharCode(memorySet[pointer]);
-                result+=memorySet[pointer];
+                result.push(memorySet[pointer]);
                 break;
             case ',':
                 const n = params.shift();
@@ -81,7 +77,7 @@ const interpret: Interpret = (c, p) =>  {
 
         index++;
     }
-    // console.log(result);
+
     return {
         result,
         error,
