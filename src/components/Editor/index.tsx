@@ -24,7 +24,8 @@ const Editor: React.FC<IProps> = ({ value, setValue }) => {
                 spellcheck: true,
                 autocorrect: true,
                 theme: 'base16-dark',
-                lineNumbers: true
+                lineNumbers: true,
+                lineWrapping: true
             }}
             editorDidMount={(editor) => {
                 editor.setSize("100%", "100%");
