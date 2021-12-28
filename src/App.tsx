@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Editor from "./components/Editor";
 import ControlPanel from "./components/ControlPanel";
-import Question from "./components/Question/Question";
+import Question from "./components/Question";
 
 function App() {
     const [value, setValue] = useState('')
