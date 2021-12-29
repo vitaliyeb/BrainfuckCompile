@@ -1,8 +1,10 @@
-
+import styles from './style.module.css';
 
 const QuestionModal = () => {
-    return <div>
-        123
+    return <div className={styles.wrapper}>
+        <div className={styles.modal}>
+
+        </div>
     </div>
 };
 
