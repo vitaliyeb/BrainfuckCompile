@@ -9,7 +9,7 @@ const Question = () => {
 
     return (<>
         <div onClick={() => toggleModal(true)} className={styles.question}>?</div>
-        { modalStatus && ReactDOM.createPortal(<QuestionModal />, document.body) }
+        { modalStatus && ReactDOM.createPortal(<QuestionModal closeModal={()=>toggleModal(false)} />, document.body) }
     </>)
 };
 

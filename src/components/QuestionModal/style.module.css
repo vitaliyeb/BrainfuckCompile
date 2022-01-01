@@ -8,12 +8,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #b0c1e7;
+    background-color: #000000b5;
 }
 
 .modal {
     max-width: 90vw;
     max-height: 90vh;
+    position: relative;
     width: 700px;
     height: 700px;
     transition-duration: 0s;
@@ -22,11 +23,13 @@
 
 .close {
     --close-sixe: 15px;
-    position: relative;
+    position: absolute;
     width: var(--close-sixe);
     height: var(--close-sixe);
     transform: rotate(-45deg);
     cursor: pointer;
+    right: 15px;
+    top: 15px;
 }
 
 .close:after, .close:before {
