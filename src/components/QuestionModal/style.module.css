@@ -16,9 +16,16 @@
     max-height: 90vh;
     position: relative;
     width: 700px;
+    border-radius: 4px;
     height: 700px;
     transition-duration: 0s;
-    background-color: red;
+    background-color: #34374c;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: auto;
 }
 
 .close {
@@ -28,8 +35,8 @@
     height: var(--close-sixe);
     transform: rotate(-45deg);
     cursor: pointer;
-    right: 15px;
-    top: 15px;
+    right: 10px;
+    top: 10px;
 }
 
 .close:after, .close:before {
@@ -49,4 +56,14 @@
 .close:after {
     width: 100%;
     height: 2px;
+}
+
+.cell {
+    color: #dadada;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.cell span {
+    margin-left: 5px;
 }

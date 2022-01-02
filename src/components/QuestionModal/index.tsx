@@ -11,7 +11,15 @@ const QuestionModal: React.FC<IProps> = ({closeModal}) => {
             <div
                 className={styles.close}
                 onClick={closeModal}
-            ></div>
+            />
+            {
+                Array.from({ length: 128 }).map((n, k) => (<p
+                    key={k}
+                    className={styles.cell}
+                >
+                    {k}: <span>{ String.fromCharCode(k)}</span>
+                </p>))
+            }
         </div>
     </div>
 };
