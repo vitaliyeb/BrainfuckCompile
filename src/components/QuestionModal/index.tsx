@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const QuestionModal: React.FC<IProps> = ({closeModal}) => {
-    return <div className={styles.wrapper}>
+    return <div data-testid='questionModal' className={styles.wrapper}>
         <div className={styles.modal}>
             <div
                 className={styles.close}

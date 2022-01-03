@@ -4,7 +4,7 @@ import QuestionModal from "../QuestionModal";
 import {useState} from "react";
 
 const Question = () => {
-    const [modalStatus, setModalStatus] = useState(true);
+    const [modalStatus, setModalStatus] = useState(false);
     const toggleModal = (status: boolean) => setModalStatus(status);
 
     return (<>
