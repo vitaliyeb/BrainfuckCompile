@@ -1,6 +1,6 @@
-export type Interpret = (str: string, p: string, d: boolean) => {result: number[]; error: null | string; ms: number};
+export type Interpret = (str: string, p: string) => {result: number[]; error: null | string; ms: number};
 
-const interpret: Interpret = (c, p, isDec) =>  {
+const interpret: Interpret = (c, p) =>  {
     const params = p.split(',').map(i => (parseInt(i) || 0));
     const memorySet = new Int8Array(30000);
     const code = c.replace(/\s/g, '');

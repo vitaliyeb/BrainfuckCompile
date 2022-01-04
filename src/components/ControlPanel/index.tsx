@@ -20,7 +20,7 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
 
     const runCode = () => {
         if(lastCodeInter.current !== code || lastInputInter.current !== inputParams) {
-            setInterData(interpret(code, inputParams, isDec));
+            setInterData(interpret(code, inputParams));
             lastCodeInter.current = code;
             lastInputInter.current = inputParams;
         }
