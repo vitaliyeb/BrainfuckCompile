@@ -32,4 +32,11 @@ describe('Interpret function', () => {
     ])('< operator', (input, expected) => {
         expect(interpret(input, '')).toEqual({result: expected, error: null, ms: 0})
     })
+
+    it.each([
+        [',.', '3',[3]],
+        [',.', '', [0]],
+    ])(', operator', (code, input, expected) => {
+        expect(interpret(code, input)).toEqual({result: expected, error: null, ms: 0})
+    })
 })
