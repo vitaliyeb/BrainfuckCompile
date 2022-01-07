@@ -78,6 +78,8 @@ const interpret: Interpret = (c, p) =>  {
         index++;
     }
 
+    if(cycleСounter.length && error !== `InternalError: infinity loop`) error = `Uncaught SyntaxError: expected closing token ']'`;
+
     return {
         result,
         error,
