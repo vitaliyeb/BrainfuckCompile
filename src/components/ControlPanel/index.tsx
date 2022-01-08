@@ -28,6 +28,7 @@ const ControlPanel: React.FC<IProps> = ({ code }) => {
 
     return <div className={classNames(styles.panelWrapper, {[styles.panelShow]: isShow})}>
         <input
+            data-testid='inputParametrsField'
             placeholder={'10,22,13...'}
             className={classNames(styles.inputPanel, {[styles.showInputParams]: isShowInputParams})}
             onChange={e => setInputParams(e.target.value.replace(/[^\d(?=,)]|,{2}/g, ''))}
